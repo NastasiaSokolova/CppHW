@@ -5,11 +5,11 @@
 #include <stdlib.h>
 
 #include "numbers.dat"
-
+using namespace std;
 const int N= 100000;
 
 void
-count_pref(int * pref, int size_pref, int * prime_nums)
+count_pref(int* pref, int size_pref, int* prime_nums)
 {
     for (int i = 0; i < size_pref; ++i) {
         if (i == 0 && !prime_nums[Data[i]]) {
@@ -38,7 +38,7 @@ count_primes(int * prime_nums, int size_prime_nums)
 
 
 int
-counting_ans(int first_v, int second_v , int first_point, int sec_point, int * pref, int size_pref)
+counting_ans(int first_v,  int first_point, int second_v , int sec_point, int* pref, int size_pref)
 {
     if (first_point < 0 || sec_point < 0
         || first_point >= size_pref || sec_point >= size_pref) {
@@ -74,8 +74,9 @@ int main(int argc, const char * argv[]) {
         
         int first_point = std::lower_bound(Data, Data + Size, first_v) - Data;
         int sec_point = std::upper_bound(Data, Data + Size, second_v) - Data - 1;
-        int ans = counting_ans(first_point, sec_point, pref, Size, first_v, second_v);
-        printf("%d\n", ans);
+        int ans = counting_ans(first_v, first_point,second_v, sec_point, pref, Size);
+        
+        cout << ans << endl;
     }
     delete[] prime_nums;
     delete[] pref;
